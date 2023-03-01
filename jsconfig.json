@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es6",
+		"jsx": "react-jsx",
+		"moduleResolution": "node",
+		"lib": ["es6", "dom"],
+		"checkJs": false,
+		"baseUrl": ".",
+		"allowSyntheticDefaultImports": true,
+		"paths": {
+			"@/*": ["./*"],
+			"@/screens/*": ["screens/*"],
+			"@/features/*": ["./features/*"],
+			"@/config/*": ["./config/*"],
+			"@/constants/*": ["./constants/*"]
+		}
+	},
+	"exclude": ["node_modules", "**/node_modules/*"]
+}
