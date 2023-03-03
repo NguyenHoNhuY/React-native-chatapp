@@ -33,7 +33,7 @@ const Home = () => {
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity
-				onPress={() => navigation.navigate('chat')}
+				onPress={() => navigation.navigate('Chat')}
 				style={styles.chatButton}
 			>
 				<Entypo

@@ -9,7 +9,7 @@ import {
 	View,
 } from 'react-native'
 import LoginBackground from '../assets/login.png'
-import auth from '../config/firebase'
+import { auth } from '../config/firebase'
 
 const SignUp = ({ navigation }) => {
 	const [email, setEmail] = useState('')
@@ -19,12 +19,14 @@ const SignUp = ({ navigation }) => {
 		if (email !== '' && password !== '') {
 			try {
 				const response = createUserWithEmailAndPassword(auth, email, password)
+				navigation.navigate('Login')
 				response ?? console.log(response)
 			} catch (error) {
 				console.log(error)
 			}
 		}
 	}
+
 	return (
 		<View style={styles.container}>
 			<Image
@@ -42,7 +44,7 @@ const SignUp = ({ navigation }) => {
 					textContentType='emailAddress'
 					autoFocus={true}
 					value={email}
-					onChange={(email) => setEmail(email)}
+					onChangeText={(email) => setEmail(email)}
 				/>
 				<TextInput
 					style={styles.input}
@@ -52,7 +54,7 @@ const SignUp = ({ navigation }) => {
 					secureTextEntry={true}
 					textContentType='password'
 					value={password}
-					onChange={(password) => setPassword(password)}
+					onChangeText={(password) => setPassword(password)}
 				/>
 				<TouchableOpacity
 					style={styles.button}

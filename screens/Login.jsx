@@ -42,7 +42,7 @@ const Login = ({ navigation }) => {
 					textContentType='emailAddress'
 					autoFocus={true}
 					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+					onChangeText={(email) => setEmail(email)}
 				/>
 				<TextInput
 					style={styles.input}
@@ -52,7 +52,7 @@ const Login = ({ navigation }) => {
 					secureTextEntry={true}
 					textContentType='password'
 					value={password}
-					onChange={(e) => setPassword(e.target.value)}
+					onChangeText={(password) => setPassword(password)}
 				/>
 				<TouchableOpacity
 					style={styles.button}
@@ -73,7 +73,7 @@ const Login = ({ navigation }) => {
 					<Text style={{ color: 'gray', fontWeight: '600', fontSize: 14 }}>
 						Don't have an account?{' '}
 					</Text>
-					<TouchableOpacity onPress={() => navigation.navigate('signUp')}>
+					<TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
 						<Text style={{ color: '#f57c00', fontWeight: '600', fontSize: 14 }}>
 							Sign Up
 						</Text>

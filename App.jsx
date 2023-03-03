@@ -1,9 +1,11 @@
+import { AntDesign } from '@expo/vector-icons'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useContext, useEffect, useState } from 'react'
-import { ActivityIndicator, View } from 'react-native'
+import { ActivityIndicator, TouchableOpacity, View } from 'react-native'
 import { auth } from './config/firebase'
+import { color } from './constants/colors'
 import AuthenticatedUserProvider, {
 	AuthenticatedUserContext,
 } from './features/context/AuthContext'
@@ -14,18 +16,40 @@ import SignUp from './screens/SignUp'
 
 const Stack = createStackNavigator()
 const MainStack = () => {
+	const handleLogout = async () => {
+		try {
+			await signOut(auth)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	return (
 		<Stack.Navigator
-			initialRouteName='home'
-			screenOptions={{ headerShown: false }}
+			initialRouteName='Home'
+			screenOptions={{
+				headerTitleAlign: 'center',
+				headerRight: () => (
+					<TouchableOpacity
+						style={{ marginRight: 10 }}
+						onPress={handleLogout}
+					>
+						<AntDesign
+							name='logout'
+							size={24}
+							color={color.gray}
+							style={{ marginRight: 10 }}
+						/>
+					</TouchableOpacity>
+				),
+			}}
 		>
 			<Stack.Screen
-				name='home'
+				name='Home'
 				component={Home}
-				options={{ headerShown: true }}
 			/>
 			<Stack.Screen
-				name='chat'
+				name='Chat'
 				component={Chat}
 			/>
 		</Stack.Navigator>
@@ -35,15 +59,15 @@ const MainStack = () => {
 const AuthStack = () => {
 	return (
 		<Stack.Navigator
-			initialRouteName='login'
+			initialRouteName='Login'
 			screenOptions={{ headerShown: false }}
 		>
 			<Stack.Screen
-				name='login'
+				name='Login'
 				component={Login}
 			/>
 			<Stack.Screen
-				name='signUp'
+				name='SignUp'
 				component={SignUp}
 			/>
 		</Stack.Navigator>
